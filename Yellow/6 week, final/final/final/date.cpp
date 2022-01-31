@@ -75,6 +75,8 @@ Date ParseDate(std::istringstream& is) {
 
     is >> year >> month >> day;
 
+    is.ignore(1);
+
     Date result = Date(year, month, day);
     return result;
 }

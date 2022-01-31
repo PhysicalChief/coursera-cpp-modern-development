@@ -13,7 +13,9 @@
 using namespace std;
 
 string ParseEvent(istream& is) {
-    // Реализуйте эту функцию
+    string result_event;
+    getline(is, result_event);
+    return result_event;
 }
 
 void TestAll();

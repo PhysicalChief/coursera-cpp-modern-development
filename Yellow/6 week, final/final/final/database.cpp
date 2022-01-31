@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void Database::AddEvent(const Date& date, const string& event) {
+void Database::Add(const Date& date, const string& event) {
     storage[date].insert(event);
 }
 
@@ -34,10 +34,21 @@ set<string> Database::Find(const Date& date) const {
     }
 }
 
+void Database::Print(ostream& stream) {
+    for (const auto& item : storage) {
+        for (const string& event : item.second) {
+            stream << item.first << " " << event << endl;
+        }
+    }
+    return;
+}
+
 void Database::Print() const {
     for (const auto& item : storage) {
         for (const string& event : item.second) {
             cout << item.first << " " << event << endl;
         }
     }
+    return;
 }
+
