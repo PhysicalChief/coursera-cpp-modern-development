@@ -36,9 +36,45 @@ bool operator<(const Date& lhs, const Date& rhs) {
         vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
 }
 
+bool operator<=(const Date& lhs, const Date& rhs) {
+    return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} <=
+        vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
+}
+
+bool operator==(const Date& lhs, const Date& rhs) {
+    return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} ==
+        vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
+}
+
+bool operator>=(const Date& lhs, const Date& rhs) {
+    return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} >=
+        vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
+}
+
+bool operator>(const Date& lhs, const Date& rhs) {
+    return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} >
+        vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
+}
+
+bool operator!=(const Date& lhs, const Date& rhs) {
+    return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} ==
+        vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
+}
+
 ostream& operator<<(ostream& stream, const Date& date) {
     stream << setw(4) << setfill('0') << date.GetYear() <<
         "-" << setw(2) << setfill('0') << date.GetMonth() <<
         "-" << setw(2) << setfill('0') << date.GetDay();
     return stream;
+}
+
+Date ParseDate(std::istringstream& is) {
+    int year = 0, month = 0, day = 0;
+
+    is.fill('-');
+
+    is >> year >> month >> day;
+
+    Date result = Date(year, month, day);
+    return result;
 }
