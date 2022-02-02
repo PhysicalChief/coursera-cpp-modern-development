@@ -3,6 +3,8 @@
 #include <string>
 #include <memory>
 
+
+
 enum class LogicalOperation
 {
 	And,
@@ -11,8 +13,8 @@ enum class LogicalOperation
 
 enum class Comparison {
 	Less,
-	LessOrEqual, 
-	Greater, 
+	LessOrEqual,
+	Greater,
 	GreaterOrEqual,
 	Equal,
 	NotEqual,
@@ -29,7 +31,7 @@ class EmptyNode : public Node {
 };
 
 class DateComparisonNode : public Node {
-public :
+public:
 	DateComparisonNode(const Comparison& com, const Date& date);
 	bool Evaluate(const Date& date, const std::string& event) const override;
 private:

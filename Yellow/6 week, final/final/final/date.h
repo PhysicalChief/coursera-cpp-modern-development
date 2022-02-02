@@ -2,6 +2,7 @@
 #include <sstream>
 #include <iomanip>
 
+
 class Date
 {
 public:
@@ -15,7 +16,6 @@ private:
 	int day;
 };
 
-ostream& operator<<(ostream& stream, const Date& date);
 bool operator<(const Date& lhs, const Date& rhs);
 bool operator<=(const Date& lhs, const Date& rhs);
 bool operator==(const Date& lhs, const Date& rhs);
@@ -24,3 +24,5 @@ bool operator>(const Date& lhs, const Date& rhs);
 bool operator!=(const Date& lhs, const Date& rhs);
 
 Date ParseDate(const std::istringstream& is);
+
+std::ostream& operator<<(std::ostream& stream, const Date& date);

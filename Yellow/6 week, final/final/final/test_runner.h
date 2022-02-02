@@ -18,11 +18,11 @@ private:
 };
 
 template <class T>
-ostream& operator << (ostream& os, const set<T>& s);
+std::ostream& operator << (std::ostream& os, const std::set<T>& s);
 template <class K, class V>
-ostream& operator << (ostream& os, const map<K, V>& m);
+std::ostream& operator << (std::ostream& os, const std::map<K, V>& m);
 template <class K, class V>
-ostream& operator << (ostream& os, const pair<K, V>& p);
+std::ostream& operator << (std::ostream& os, const std::pair<K, V>& p);
 template<class T, class U>
-void AssertEqual(const T& t, const U& u, const string& hint = {});
-void Assert(bool b, const string& hint);
+void AssertEqual(const T& t, const U& u, const std::string& hint = {});
+void Assert(bool b, const std::string& hint);
