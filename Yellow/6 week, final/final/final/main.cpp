@@ -1,4 +1,3 @@
-﻿#pragma once
 #include "database.h"
 #include "date.h"
 #include "condition_parser.h"
@@ -8,7 +7,6 @@
 #include <iostream>
 #include <stdexcept>
 #include <string>
-#include <sstream>
 
 std::string ParseEvent(std::istream& is) {
     std::string result_event;

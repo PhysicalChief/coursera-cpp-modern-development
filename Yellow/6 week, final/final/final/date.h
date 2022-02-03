@@ -10,11 +10,14 @@ public:
 	int GetYear() const;
 	int GetMonth() const;
 	int GetDay() const;
+	Date& operator=(const Date& other);
 private:
 	int year;
 	int month;
 	int day;
 };
+
+Date ParseDate(std::istream& is);
 
 bool operator<(const Date& lhs, const Date& rhs);
 bool operator<=(const Date& lhs, const Date& rhs);
@@ -22,7 +25,5 @@ bool operator==(const Date& lhs, const Date& rhs);
 bool operator>=(const Date& lhs, const Date& rhs);
 bool operator>(const Date& lhs, const Date& rhs);
 bool operator!=(const Date& lhs, const Date& rhs);
-
-Date ParseDate(const std::istringstream& is);
 
 std::ostream& operator<<(std::ostream& stream, const Date& date);

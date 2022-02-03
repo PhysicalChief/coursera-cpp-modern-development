@@ -1,4 +1,4 @@
-#pragma once
+
 #include "node.h"
 
 bool EmptyNode::Evaluate(const Date& date, const std::string& event) const {
@@ -10,18 +10,21 @@ DateComparisonNode::DateComparisonNode(const Comparison& com, const Date& date) 
 bool DateComparisonNode::Evaluate(const Date& inDate, const std::string& event) const {
 	if (comparison == Comparison::Equal) {
 		return inDate == date;
+	}	
+	if (comparison == Comparison::Less) {
+		return inDate < date;
 	}
 	if (comparison == Comparison::LessOrEqual) {
 		return inDate <= date;
 	}
-	if (comparison == Comparison::Less) {
-		return inDate < date;
-	}
+	if (comparison == Comparison::Greater) {
+	return inDate > date;
+}
 	if (comparison == Comparison::GreaterOrEqual) {
 		return inDate >= date;
 	}
-	if (comparison == Comparison::Greater) {
-		return inDate > date;
+	if (comparison == Comparison::NotEqual) {
+		return inDate != date;
 	}
 	return false;
 }
@@ -35,6 +38,18 @@ bool EventComparisonNode::Evaluate(const Date& date, const std::string& event) c
 	if (comparison == Comparison::NotEqual) {
 		return event != event_name;
 	}
+	if (comparison == Comparison::Less) {
+		return event < event_name;
+	}
+	if (comparison == Comparison::LessOrEqual) {
+		return event <= event_name;
+	}
+	if (comparison == Comparison::Greater) {
+		return event > event_name;
+	}
+	if (comparison == Comparison::GreaterOrEqual) {
+		return event >= event_name;
+	}
 	return false;
 }
 
@@ -43,10 +58,10 @@ LogicalOperationNode::LogicalOperationNode(LogicalOperation log_op, std::shared_
 
 bool LogicalOperationNode::Evaluate(const Date& date, const std::string& event_) const {
 	if (logical_operation == LogicalOperation::And) {
-		left_node->Evaluate(date, event_) && right_node->Evaluate(date, event_);
+		return left_node->Evaluate(date, event_) && right_node->Evaluate(date, event_);
 	}
 	if (logical_operation == LogicalOperation::Or) {
-		left_node->Evaluate(date, event_) || right_node->Evaluate(date, event_);
+		return left_node->Evaluate(date, event_) || right_node->Evaluate(date, event_);
 	}
 	return false;
 }

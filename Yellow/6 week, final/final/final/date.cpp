@@ -1,10 +1,8 @@
-#pragma once
+
 #include "date.h"
-#include <stdexcept>
 #include <string>
-#include <vector>
-#include <iostream>
 #include <iomanip>
+#include <vector>
 
 
 Date::Date(int new_year, int new_month, int new_day) {
@@ -29,6 +27,24 @@ int Date::GetMonth() const {
 
 int Date::GetDay() const {
     return day;
+}
+
+Date ParseDate(std::istream& is) {
+    int year = 0, month = 0, day = 0;
+
+    is >> year;
+
+    is.ignore(1);
+
+    is >> month;
+
+    is.ignore(1);
+
+    is >> day;
+
+    is.ignore(1);
+
+    return Date(year, month, day);
 }
 
 bool operator<(const Date& lhs, const Date& rhs) {
@@ -57,7 +73,7 @@ bool operator>(const Date& lhs, const Date& rhs) {
 }
 
 bool operator!=(const Date& lhs, const Date& rhs) {
-    return std::vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} ==
+    return std::vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} !=
         std::vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
 }
 
@@ -68,15 +84,11 @@ std::ostream& operator<<(std::ostream& stream, const Date& date) {
     return stream;
 }
 
-Date ParseDate(std::istringstream& is) {
-    int year = 0, month = 0, day = 0;
+Date& Date::operator=(const Date& other)
+{
+    this->year = other.GetYear();
+    this->month = other.GetMonth();
+    this->day = other.GetDay();
 
-    is.fill('-');
-
-    is >> year >> month >> day;
-
-    is.ignore(1);
-
-    Date result = Date(year, month, day);
-    return result;
+    return *this;
 }
